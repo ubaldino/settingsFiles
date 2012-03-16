@@ -1,0 +1,114 @@
+# Conky, a system monitor, based on torsmo
+#
+# Any original torsmo code is licensed under the BSD license
+#
+# All code written since the fork of torsmo is licensed under the GPL
+#
+# Please see COPYING for details
+#
+# Copyright (c) 2004, Hannu Saransaari and Lauri Hakkarainen
+# Copyright (c) 2005-2010 Brenden Matthews, Philip Kovacs, et. al. (see AUTHORS)
+# All rights reserved.
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+background yes
+font Caliban:size=9
+xftfont Caliban:size=8.4
+use_xft yes
+xftalpha 0.5
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_type override
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+draw_shades yes
+draw_outline yes
+draw_borders no 
+draw_graph_borders no 
+minimum_size 1024 
+maximum_width 1024 
+default_color ffffff
+default_shade_color 000000
+draw_outline no
+alignment top_right
+gap_x 1
+gap_y 24
+no_buffers yes
+cpu_avg_samples 2
+override_utf8_locale yes
+uppercase no 
+use_spacer none
+color1 4D6844
+
+
+TEXT
+${image /etc/conky/img/slackware_Linux.jpg -p 1,0 -s 1024x768}
+
+
+${goto 710}${color EF7800}${font Arial Black:size=25}${time %H:%M:%S}${font}${color}
+${goto 756}${color C0FFFF}${font Arial black:size=13}${time %d-%m-%Y}${color}${font}
+${goto 765}${color C0FFFF}${font Arial black:size=13}${time %A }${color}${font}
+${image /etc/conky/icons/paine.png -p 868,-1 -s 150x150}
+${goto 800}${hr 3}
+#${voffset -6}${goto 70}${font Poky:pixelsize=22}T${font}${color 98FB98}${voffset -8} ${battery_bar 6,150 BAT0}${color}  ${battery BAT0} 
+
+${goto 730}${color FFFFFF}${font :style=Bold:pixelsize=12}CPU${voffset -8} ${font Poky:pixelsize=22}P${font}${color}  ${voffset -5} ${color FFFFFF}${freq_g 1} GHz${color} ${alignc}${voffset -15} ${cpugraph  CPU1 20,80 FFF6CD FF0B00 -t}
+${voffset -20}${goto 946}${font :style=Bold:pixelsize=14}${cpu CPU1}%${font}
+${color 91FF02}${goto 800}$sysname: $kernel $machine
+${goto 800}$nodename Uptime: $uptime_short${color}
+
+
+#${goto 100}Users logon: $user_number
+#dename
+#
+#${voffset -9}${goto 33}${font :style=Bold:pixelsize=12}CPU2${voffset -8} ${font Poky:pixelsize=22}P${font} ${voffset -5}${freq_g 2} GHz ${alignc}${voffset -15} ${cpugraph  CPU2 20,80 FFF6CD FF0B00 -t}${alignr 20}${voffset -4}${font weather:pixelsize=32}zx${font}${voffset -34}  ${font :style=Bold:pixelsize=14}${acpitemp} C
+#${voffset -4}${goto 246}${font :style=Bold:pixelsize=12}${cpu CPU2}%${font}
+${voffset -1}${goto 700} ${color FFFFFF} ${font :style=Bold:pixelsize=12}MEM${font}${voffset -19} ${font Poky:pixelsize=32}a${font}${color}   ${color FFFFFF}${voffset -22}  RAM: $mem v $memmax${color}
+${alignr 18}${color A0CCFF}   ${membar 4,180}${color}  ${font :style=bold:pixelsize=10}$memperc%${font}
+
+${goto 794} Swap: $swap v $swapmax
+${goto 794} Load: ${color C7FF8E}$loadavg${color}
+${goto 794} Processes: ${color C7FF8E}$processes${color}
+${goto 794} Running: $running_processes ${color}
+
+
+${voffset -8}${goto 722}${color FFFFFF}${font :style=Bold:pixelsize=12}NET${font}${voffset -19} ${font Poky:pixelsize=26}w${font}${color}
+${color FFE056}${goto 780}LAN ${hr 2}${color}
+#${goto 120}${font PizzaDude Bullets:size=10}O${font} Up: ${upspeed eth0} kb/s ${alignr}${upspeedgraph eth0 8,60}
+${goto 820}${font PizzaDude Bullets:size=10}o${font} IP : ${alignr}${color2}${addr eth0}${color}
+${goto 820}${font PizzaDude Bullets:size=10}o${font} Down: ${downspeed eth0} kb/s ${alignr}${downspeedgraph eth0 8,60}
+${goto 820}${font PizzaDude Bullets:size=10}o${font} Upload: ${alignr}${totalup eth0}
+${goto 820}${font PizzaDude Bullets:size=10}o${font} Download: ${alignr}${totaldown eth0}
+${color FFE056}${goto 780}WIFI ${hr 2}${color}
+${goto 820}${font PizzaDude Bullets:size=10}o${font} Señal: ${wireless_link_qual eth0}% ${alignr}${color 9FFCC0}${wireless_link_bar 5,60 eth1}${color}
+${goto 820}${font PizzaDude Bullets:size=10}o${font} IP: ${addr wlan0}${alignr}
+${goto 820}${font PizzaDude Bullets:size=10}o${font} AP: ${wireless_ap wlan0}${alignr}
+${goto 820}${font PizzaDude Bullets:size=10}o${font} Bitrate: ${wireless_bitrate wlan0} ${alignr}${color 9FFCC0}${wireless_link_bar 5,60 wlan0}${color}
+${goto 820}${font PizzaDude Bullets:size=10}o${font} Essid: ${wireless_essid wlan0}  ${alignr}
+${color FFFFFF}${goto 746}${font Poky:pixelsize=42}y${font}${color}
+${voffset -40}${goto 850}${alignc}Root: ${fs_free /} / ${fs_size /}${font}
+${goto 850}${color 48CA3C}${fs_bar 4,150 /}${color}
+${goto 850}Home: ${fs_free /home} / ${fs_size /home}
+${goto 850}${color 48CA3C}${fs_bar 4,150 /home}${color}
+${goto 850}Logico: ${fs_free /media/logico} / ${fs_size /media/logico}
+${goto 850}${color 48CA3C}${fs_bar 4,150 /media/logico}${color}
+${goto 770}CORREO ${hr 2}
+${goto 770}${font FreeSans:size=16}@${font}${execpi 300 python conkyscripts/gmail_parser.py}
+${goto 750}${color 94FF09}$audacious_status${color} ${color FFE056} Audacious ${hr 1}${color}
+#$audacious_status
+${alignr 67}${goto 750}${color 09A5FF}$audacious_bar${color}
+
